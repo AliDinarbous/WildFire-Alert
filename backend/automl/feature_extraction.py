@@ -184,14 +184,17 @@ def extract_features(args):
 
     edges = cv2.Canny(gray,50,150)
     features["edge_density"] = float(np.mean(edges>0))
+   
+    feature_keys = [k for k in features]          
+    renamed = {f"feature_{i+1}": features[k] for i, k in enumerate(feature_keys)}
 
-    features["target"] = label
+    renamed["target"] = label
 
-    return features
+
+    return renamed
 
 
 # traiter le dataset entier
-
 def collect_images(folder,label,limit):
 
     files = sorted([
@@ -230,3 +233,51 @@ def build_datasets(dataset_path=DATASET_PATH):
     dev_df   = process_split(dev,OTHER_LIMIT)
 
     return train_df,test_df,dev_df
+
+# Traiter une image recuperer de l'API sattelite a un df de features pour inferer le model
+def extract_features_from_bytes(image_bytes: bytes) -> pd.DataFrame:
+
+    img_array = np.frombuffer(image_bytes, np.uint8)
+    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+
+    if img is None:
+        raise ValueError("Impossible de décoder l'image")
+
+    h, w = img.shape[:2]
+    if h < MIN_IMAGE_SIZE or w < MIN_IMAGE_SIZE:
+        raise ValueError("Image trop petite")
+
+    
+    rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB).astype(np.float32) / 255.0
+    bands = np.transpose(rgb, (2, 0, 1))
+
+    
+    features = {}
+    indices = spectral_indices(bands)
+
+    for name, val in indices.items():
+        if name.startswith("_"):
+            features[name[1:]] = float(val)
+            continue
+        for k, v in stats(val).items():
+            features[f"{name}_{k}"] = v
+
+    for i, c in enumerate(["r", "g", "b"]):
+        for k, v in stats(bands[i]).items():
+            features[f"ch_{c}_{k}"] = v
+
+    gray = cv2.cvtColor(
+        (np.transpose(bands, (1, 2, 0)) * 255).astype(np.uint8),
+        cv2.COLOR_RGB2GRAY
+    )
+
+    features.update(texture_features(gray))
+
+    edges = cv2.Canny(gray, 50, 150)
+    features["edge_density"] = float(np.mean(edges > 0))
+
+    
+    feature_keys = list(features.keys())
+    renamed = {f"feature_{i+1}": features[k] for i, k in enumerate(feature_keys)}
+
+    return pd.DataFrame([renamed])
