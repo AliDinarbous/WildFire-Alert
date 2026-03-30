@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import cv2
 import pytest
-from backend.automl.pipeline.feature_extraction import (
+from backend.automl.feature_extraction import (
     find_splits,
     get_class_dirs,
     read_bands,
