@@ -23,9 +23,9 @@ L’utilisateur peut :
 
 - Appuyer sur **“Évaluer le risque”**
 - Obtenir :
-  - Une probabilité d’incendie  
-  - Un contexte explicatif  
-  - Des recommandations  
+  - Une probabilité d’incendie
+  - Un contexte explicatif
+  - Des recommandations
 
 Deux rôles sont définis :
 
@@ -61,12 +61,12 @@ Le modèle de prédiction est entraîné via une **pipeline AutoML** déjà impl
 
 Cette pipeline :
 
-- Charge le dataset  
-- Nettoie les données  
-- Effectue le feature engineering  
-- Teste plusieurs modèles  
-- Optimise le meilleur modèle  
-- Sauvegarde la version finale  
+- Charge le dataset
+- Nettoie les données
+- Effectue le feature engineering
+- Teste plusieurs modèles
+- Optimise le meilleur modèle
+- Sauvegarde la version finale
 
 L’objectif est d’automatiser entièrement le cycle ML.
 
@@ -76,12 +76,12 @@ L’objectif est d’automatiser entièrement le cycle ML.
 
 Si la probabilité d’incendie est élevée :
 
-- Le système RAG recherche un incendie historique similaire  
+- Le système RAG recherche un incendie historique similaire
 - Retourne un contexte enrichi incluant :
-  - Taille du périmètre brûlé  
-  - Durée de l’incendie  
-  - Conditions météorologiques associées  
-- Génère des recommandations adaptées à la situation actuelle  
+  - Taille du périmètre brûlé
+  - Durée de l’incendie
+  - Conditions météorologiques associées
+- Génère des recommandations adaptées à la situation actuelle
 
 Cela permet d’expliquer la prédiction au lieu de simplement afficher un score.
 
