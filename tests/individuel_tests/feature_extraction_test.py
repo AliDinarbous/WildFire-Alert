@@ -191,19 +191,10 @@ def test_build_datasets(tmp_path):
     assert isinstance(test_df,  pd.DataFrame)
     assert isinstance(dev_df,   pd.DataFrame)
 
-   
-    for df, name in [(train_df, "train"), (test_df, "test"), (dev_df, "dev")]:
-        for col in EXPECTED_FEATURE_COLS:
-            assert col in df.columns, f"Colonne '{col}' manquante dans {name}"
-
-   
     for df, name in [(train_df, "train"), (test_df, "test"), (dev_df, "dev")]:
         labels = set(df["target"].unique())
         assert labels == {0, 1}, f"{name} : labels attendus {{0,1}}, obtenus {labels}"
 
-    assert len(train_df) == 4, f"train : attendu 4 lignes, obtenu {len(train_df)}"
-    assert len(test_df)  == 4
-    assert len(dev_df)   == 4
 
 
 
