@@ -24,6 +24,7 @@ jobs:
       - name: Install api dependencies
         run: |
           pip install -r backend/app/requirements.txt
+          pip install httpx
 
       - name: Install pytest
         run: pip install pytest
