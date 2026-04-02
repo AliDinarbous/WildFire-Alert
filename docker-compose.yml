@@ -26,7 +26,6 @@ services:
     env_file:
       - .env
     volumes:
-      - ./backend/app:/app
       - ./backend/automl/data/model:/app/data/model
       - ./backend/automl/data/dataset:/app/data/dataset
     depends_on:
