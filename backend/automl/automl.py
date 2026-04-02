@@ -6,7 +6,7 @@ import numpy as np
 import os
 import requests
 from typing import Tuple, Optional, Dict, Any
-from automl.feature_extraction import build_datasets, extract_features_from_bytes
+from feature_extraction import build_datasets, extract_features_from_bytes
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import (
     accuracy_score, 
@@ -17,10 +17,10 @@ from sklearn.metrics import (
     confusion_matrix
 )
 import joblib
-from automl.tuple import Data_set, type_enum
-from automl.select_model import model_selector
-from automl.data_preparation import data_preparation
-from automl.trainer.model_trainer import train_model
+from tuple import Data_set, type_enum
+from select_model import model_selector
+from data_preparation import data_preparation
+from trainer.model_trainer import train_model
 
 
 # Variable globale pour stocker l'état de l'AutoML

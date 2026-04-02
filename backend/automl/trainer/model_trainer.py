@@ -8,14 +8,14 @@ from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor, Grad
 
 from sklearn.model_selection import cross_val_score, GridSearchCV
 from sklearn.multioutput import MultiOutputClassifier
-from automl.trainer.model import model_entrainer 
-from automl.tuple import type_enum
+from trainer.model import model_entrainer 
+from tuple import type_enum
 
 
-from automl.trainer.rf_classification import rf_trainer
-from automl.trainer.rf_regression import rfr_trainer
-from automl.trainer.gboost_classification import gbc_trainer
-from automl.trainer.gboost_regression import gbr_trainer
+from trainer.rf_classification import rf_trainer
+from trainer.rf_regression import rfr_trainer
+from trainer.gboost_classification import gbc_trainer
+from trainer.gboost_regression import gbr_trainer
 
 
 def gnb_trainer(model, dataset) -> model_entrainer:

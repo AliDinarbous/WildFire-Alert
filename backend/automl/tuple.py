@@ -1,7 +1,7 @@
 from argparse import BooleanOptionalAction
 from typing import List, Any, Optional
 from enum import Enum
-import automl.data_info as Di
+import data_info as Di
 from sklearn.pipeline import Pipeline
 
 class type_enum(str, Enum):

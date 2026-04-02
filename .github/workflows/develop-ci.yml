@@ -1,3 +1,4 @@
+
 name: CI Develope Branch
 
 on:
@@ -5,20 +6,37 @@ on:
     branches:
       - develop
 jobs:
-  automl-ci:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - name: Install dependencies
+
+      - name: Install automl dependencies
         run: |
           pip install -r backend/automl/requirements.txt
-          pip install pytest
+
+      - name: Install api dependencies
+        run: |
+          pip install -r backend/app/requirements.txt
+          pip install httpx
+
+      - name: Install pytest
+        run: pip install pytest
+
       - name: Run unit tests
         run: pytest tests/individuel_tests
+
       - name: Build AutoML Docker container
         run: docker build -t automl-service ./backend/automl
+
+      - name: Build API Docker container
+        run: docker build -t api-service ./backend/app
+
+      - name: Pull DB Docker image
+        run: docker pull postgres:15

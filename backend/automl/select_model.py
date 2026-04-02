@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor, GradientBoostingClassifier, GradientBoostingRegressor
 from sklearn.model_selection import cross_val_score
 from sklearn.multioutput import MultiOutputClassifier
-from automl.tuple import Data_set, type_enum
+from tuple import Data_set, type_enum
 
 
 def model_selector(dataset: Data_set):

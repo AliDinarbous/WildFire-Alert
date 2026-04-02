@@ -1,5 +1,4 @@
-import automl.data_retrive as dr
-import automl.tuple as t
+import tuple as t
 
 """
 Prends un dataframe et retourne une liste des labels
