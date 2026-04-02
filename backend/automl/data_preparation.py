@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.pipeline import Pipeline
-import automl.tuple as t
-import automl.data_info as Di
+import tuple as t
+import data_info as Di
 
 
 def data_preparation(train_df: pd.DataFrame, test_df: pd.DataFrame, dev_df: pd.DataFrame) -> t.Data_set:

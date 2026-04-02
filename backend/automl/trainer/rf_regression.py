@@ -1,11 +1,11 @@
 from sklearn.model_selection import RandomizedSearchCV
-from automl.trainer.model import model_entrainer
+from trainer.model import model_entrainer
 from sklearn.ensemble import VotingRegressor
 from skopt import BayesSearchCV
 from skopt.space import Integer, Real, Categorical
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import numpy as np
-from automl.tuple import Data_set, type_enum
+from tuple import Data_set, type_enum
 
 def rfr_trainer (model, dataset):
     """
